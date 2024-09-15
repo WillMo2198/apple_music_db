@@ -1,30 +1,29 @@
-DROP DATABASE IF EXISTS `am_library`;
-DROP DATABASE IF EXISTS `am_photos`;
-DROP DATABASE IF EXISTS `am_users`;
+DROP DATABASE IF EXISTS `apple_music`;
 
 
-CREATE DATABASE `am_library`;
-CREATE DATABASE `am_photos`;
-CREATE DATABASE `am_users`;
 
-USE `am_photos`;
+CREATE DATABASE `apple_music`;
+
+USE apple_music;
+
 CREATE TABLE `user_photo` (
   `user_id` int(11) NOT NULL,
   `file` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 CREATE TABLE `artist_photo` (
   `artist_id` int(11) NOT NULL,
   `file` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`artist_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 CREATE TABLE `album_cover` (
   `album_id` int(11) NOT NULL,
   `file` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`album_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-USE `am_library`;
 
 CREATE TABLE `tracks` (
   `tid` int(11) NOT NULL AUTO_INCREMENT,
@@ -54,9 +53,9 @@ CREATE TABLE `albums` (
   `release_date` date DEFAULT NULL,
   `tracks` smallint(3) NOT NULL,
   `release_type` varchar(6) DEFAULT NULL,
-  PRIMARY KEY (`album_id`),
-  FOREIGN KEY (artist_id) REFERENCES artists(artist_id)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`album_id`)
+  ) 
+  ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 INSERT INTO `albums` VALUES (1, 'Abbey Road', 'The Beatles', 'Rock', '1969-09-26', 17, 'LP');
 INSERT INTO `albums` VALUES (2, 'Let It Be', 'The Beatles', 'Rock', '1970-05-08', 12, 'LP');
 INSERT INTO `albums` VALUES (3, 'The Chronic', 'Dr. Dre', 'Hip-Hop/Rap', '1992-12-15', 16, 'LP');
@@ -79,7 +78,6 @@ INSERT INTO `artists` VALUES (4, 'Tool', 'Los Angeles', 'CA');
 INSERT INTO `artists` VALUES (5, 'Nine Inch Nails', 'Mercer', 'PA');
 INSERT INTO `artists` VALUES (6, 'Eminem', 'Detroit', 'MI');
 
-USE `am_users`;
 CREATE TABLE `users` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `first_name` varchar(50) NOT NULL,
